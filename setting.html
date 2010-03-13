@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>setting friend list</title>
+</head>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "MS UI Gothic";
+	font-size: 12px;
+	color: white;
+	width: 200px;
+	height: 150px;
+}
+</style>
+<script type="text/javascript" src="js/utility.js" charset="utf-8"></script>
+<script type="text/javascript">
+function init() {
+	var g = System.Gadget;
+
+	g.onSettingsClosing = onSettingsClosing;
+
+	showSettings();
+}
+
+function onSettingsClosing(e) {
+	if(e.closeAction == e.Action.commit) {
+		var s = System.Gadget.Settings;
+		var doc = document;
+		var users = [];
+		var added = {};
+		for (var i=1; i<=3; ++i) {
+			var user_id = doc.getElementById("user_" + String(i)).value.trim();
+
+			if (user_id.length > 0 && !added[user_id]) {
+				users.push(user_id);
+				added[user_id] = true;
+			}
+		}
+
+		s.writeString("users", users.join(","));
+
+		var select = doc.getElementById("minute");
+		var oIndex = select.selectedIndex;
+		var minute = select.options[oIndex].value;
+		s.writeString("minute", minute);
+	}
+}
+
+function showSettings() {
+	var s = System.Gadget.Settings;
+	var doc = document, users;
+	var setting = s.readString("users").trim();
+	if (setting.length > 0) {
+		users = s.readString("users").split(",");
+	}
+	else {
+		users = [];
+	}
+
+	users.forEach(function(user, i) {
+		var textBox = doc.getElementById("user_" + String(++i));
+		textBox.value = user.escapeHtml();
+	});
+
+	var minute = s.readString("minute");
+	switch (minute) {
+		case "1" :
+		case "2" :
+		case "3" :
+			doc.getElementById("m_" + minute).selected = true;
+			break;
+
+		default :
+			doc.getElementById("m_2").selected = true;
+			break;
+	}
+}
+
+</script>
+<body onload="init()">
+<p><label for="user_1">user id:</label> <input type="text" id="user_1" maxlength="15"></p>
+<p><label for="user_2">user id:</label> <input type="text" id="user_2" maxlength="15"></p>
+<p><label for="user_3">user id:</label> <input type="text" id="user_3" maxlength="15"></p>
+<p><label for="minute">check interval: </label>
+<select id="minute">
+<option id="m_1" value="1">1</option>
+<option id="m_2" value="2">2</option>
+<option id="m_3" value="3">3</option>
+</select>
+minute
+</p>
+</body>
+</html>

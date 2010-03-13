@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "MS UI Gothic";
+	font-size: 12px;
+	color: white;
+	width: 125px;
+	height: 125px;
+}
+div#friends p#message {
+	color: #1B1B1B;
+	margin: 55px 1px;
+}
+div#friends div {
+	color: #1B1B1B;
+	background-color: #FFFFFF;
+	padding: 2px 1px;
+	height: 41px;
+}
+div#friends div dt a {
+	margin: 0 5px;
+	color: #1B1B1B;
+	text-decoration: none;
+	font-weight: bold;
+}
+div#friends div dt a:hover {
+	color: #0187C5;
+	text-decoration: underline;
+}
+div#friends div dd {
+	height 24px;
+	line-height: 12px;
+}

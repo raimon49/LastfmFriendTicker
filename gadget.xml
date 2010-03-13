@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>Last.fm friend ticekr</name>
+    <version>1.0.0.0</version>
+    <description>view playing track title, last played track title from your choose Last.fm user list.</description>
+    <author name="raimon">
+        <info url="http://sangoukan.xrea.jp/"/>
+    </author>
+    <copyright>&#169; 2009</copyright>
+    <icons>
+      <icon height="48" width="48" src="icon.png" />
+    </icons>
+    <hosts>
+      <host name="sidebar">
+        <base type="html" apiVersion="1.0.0" src="index.html" />
+        <permissions>Full</permissions>
+        <platform minPlatformVersion="1.0" />
+        <defaultImage src="drag.png" />
+      </host>
+    </hosts>
+</gadget>

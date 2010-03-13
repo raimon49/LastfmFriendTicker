@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Last.fm friend ticker</title>
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<script type="text/javascript" src="js/utility.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/recenttrack.js" charset="utf-8"></script>
+<script type="text/javascript">
+var tickers = [];
+
+function init() {
+	var g = System.Gadget;
+
+	g.settingsUI       = "setting.html";
+	g.onSettingsClosed = loadSettings;
+
+	loadSettings();
+}
+
+function loadSettings() {
+	var s = System.Gadget.Settings;
+	var doc = document, users;
+	var setting = s.readString("users").trim();
+	if (setting.length > 0) {
+		users = s.readString("users").split(",");
+	}
+	else {
+		users = [];
+	}
+
+	tickers.forEach(function(ticker) {
+		ticker.destruct();
+		ticker = null;
+	});
+
+	tickers = null;
+	tickers = [];
+
+	var minute = s.readString("minute");
+	var usersContainer = doc.getElementById("friends");
+	usersContainer.innerHTML = "";
+	users.forEach(function(user_id) {
+		var userArea = doc.createElement("div");
+		userArea.id = user_id;
+		usersContainer.appendChild(userArea);
+		tickers.push(new RecentTrack(user_id, minute));
+	});
+
+	if (users.length === 0) showBlankMessage();
+}
+
+function showBlankMessage() {
+	var doc = document;
+	doc.getElementById("friends").innerHTML = "<p id='message'>Please setting.</p>";
+}
+</script>
+</head>
+<body onload="init()">
+<div id="friends">
+</div>
+</body>
+</html>
