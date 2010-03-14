@@ -1,6 +1,6 @@
 /**
  * @fileOverview extend built-in Object prototype
- * @author <a href="mailto:raimon49@hotmail.com">raimon</a>>
+ * @author <a href="mailto:raimon49@hotmail.com">raimon</a>
  */
 
 /**

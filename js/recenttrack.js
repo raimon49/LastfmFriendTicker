@@ -1,6 +1,6 @@
 /**
  * @fileOverview Last.fm recent track checker
- * @author <a href="mailto:raimon49@hotmail.com">raimon</a>>
+ * @author <a href="mailto:raimon49@hotmail.com">raimon</a>
  */
 
 /**
