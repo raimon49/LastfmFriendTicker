@@ -17,10 +17,11 @@ var RecentTrack = function(id, check) {
 	this.userIcon = "http://usericons.relucks.org/lastfm/" + id;
 	this.timer = null;
 
-	this.minute     = 60 * 1000;
-	this.MAX_MINUTE =  3;
-	this.MIN_MINUTE =  1;
-	this.TIMEOUT    = 5000;
+	this.minute         = 60 * 1000;
+	this.MAX_MINUTE     = 3;
+	this.MIN_MINUTE     = 1;
+	this.DEFAULT_MINUTE = 2;
+	this.TIMEOUT        = 5000;
 
 	this.intervalTime;
 	this.setIntervalTime(check);
@@ -136,7 +137,7 @@ RecentTrack.prototype.setIntervalTime = function(time) {
 	var min = (time !== void 0) ? Number(time) : 2;
 
 	if (isNaN(min) || min > this.MAX_MINUTE || min < this.MIN_MINUTE) {
-		this.intervalTime = min * this.minute;
+		this.intervalTime = this.DEFAULT_MINUTE * this.minute;
 	}
 	else {
 		this.intervalTime = min * this.minute;
